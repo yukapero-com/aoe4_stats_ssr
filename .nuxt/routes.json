@@ -3,21 +3,18 @@
     "name": "index_backup",
     "path": "/index_backup",
     "component": "/Users/yukapero/git/aoe4_stats_ssr/pages/index_backup.vue",
-    "chunkName": "pages/index_backup",
-    "_name": "_5904d909"
+    "chunkName": "pages/index_backup"
   },
   {
     "name": "inspire",
     "path": "/inspire",
     "component": "/Users/yukapero/git/aoe4_stats_ssr/pages/inspire.vue",
-    "chunkName": "pages/inspire",
-    "_name": "_69ede1e0"
+    "chunkName": "pages/inspire"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/yukapero/git/aoe4_stats_ssr/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_127dcef0"
+    "chunkName": "pages/index"
   }
 ]

@@ -24,6 +24,7 @@
     "http-errors": "^1.8.0",
     "log4js": "^6.3.0",
     "moment": "^2.29.1",
+    "mysql2": "^2.3.3-rc.0",
     "nuxt": "^2.15.7",
     "sequelize": "^6.9.0",
     "underscore": "^1.13.1",
