@@ -11,9 +11,6 @@
 
 <script>
 /* eslint-disable no-unreachable,no-debugger */
-// import * as am5 from "@amcharts/amcharts5";
-// import * as am5xy from "@amcharts/amcharts5/xy";
-// import * as am5exporting from "@amcharts/amcharts5/plugins/exporting";
 let am5, am5xy, am5exporting;
 import CONST from '../lib/const.js';
 
@@ -57,8 +54,6 @@ export default {
     am5xy = this.$am5.am5xy;
     am5exporting = this.$am5.am5exporting;
 
-    console.log(am5);
-
     this.drawChart2();
   },
   methods: {
@@ -75,7 +70,6 @@ export default {
       this.exporting = am5exporting.Exporting.new(this.root, {
         menu: am5exporting.ExportingMenu.new(this.root, {})
       });
-      console.log(this.exporting);
 
       this.chart = this.root.container.children.push(
         am5xy.XYChart.new(this.root, {

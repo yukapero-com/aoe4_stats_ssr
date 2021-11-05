@@ -1,6 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  dev: process.env.NODE_ENV !== 'production',
+
   serverMiddleware: ['~/api/index.js'],
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -28,9 +30,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~plugins/amchart.js', ssr: false }
+    { src: '~plugins/amchart.js', ssr: false },
+    { src: '~plugins/api.js', ssr: false },
   ],
-
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

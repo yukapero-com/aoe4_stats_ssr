@@ -75,9 +75,6 @@
 import _ from 'underscore';
 import Moment from 'moment';
 import EloChart from '@/components/EloChart';
-import nuxtConfig from '@/nuxt.config'
-
-const isDev = !!nuxtConfig?.dev
 
 export default {
   props: {
@@ -100,8 +97,8 @@ export default {
     preventSearchTimeoutId: null,
     isPreventSearch: false,
   }),
-  async created() {
-    let topRanker = (await this.$axios.get('/api/get_top_ranker_user_id')).data;
+  async mounted() {
+    let topRanker = await this.$get(`get_top_ranker_user_id`);
     this.items = [topRanker];
     this.select = topRanker;
     this.onChangedUser();
@@ -112,7 +109,8 @@ export default {
         this.select = null;
         this.items = [];
         return;
-      };
+      }
+      ;
       if (val === this.select) return;
       if (this.isPreventSearch) return;
       this.querySelections(val)
@@ -160,11 +158,9 @@ export default {
         this.isPreventSearch = false;
       }, 1000);
 
-      let res = (await this.$axios.get('/api/user_candidates', {
-        params: {
-          text: v
-        }
-      })).data;
+      let res = await this.$get(`user_candidates`, {
+        text: v
+      });
       this.items = res;
       this.loading = false;
     },
@@ -172,11 +168,9 @@ export default {
       if (!this.select) return;
 
       this.isFetchingChartData = true;
-      let res = (await this.$axios.get('/api/elo_log', {
-        params: {
-          id: this.select.id
-        }
-      })).data;
+      let res = await this.$get(`elo_log`, {
+        id: this.select.id
+      });
       let cdata = (() => {
         let data = _.sortBy(res, d => d.createdAt);
         _.each(data, d => {
