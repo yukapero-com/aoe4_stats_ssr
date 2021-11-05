@@ -1,0 +1,25 @@
+{
+  "entry": "server.js",
+  "files": {
+    "components/elo-chart-card.js": "components/elo-chart-card.js",
+    "components/elo-chart.js": "components/elo-chart.js",
+    "components/nuxt-logo.js": "components/nuxt-logo.js",
+    "components/tutorial.js": "components/tutorial.js",
+    "components/vuetify-logo.js": "components/vuetify-logo.js",
+    "pages/index.js": "pages/index.js",
+    "pages/index_backup.js": "pages/index_backup.js",
+    "pages/inspire.js": "pages/inspire.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "components/elo-chart-card.js": "components/elo-chart-card.js.map",
+    "components/elo-chart.js": "components/elo-chart.js.map",
+    "components/nuxt-logo.js": "components/nuxt-logo.js.map",
+    "components/tutorial.js": "components/tutorial.js.map",
+    "components/vuetify-logo.js": "components/vuetify-logo.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/index_backup.js": "pages/index_backup.js.map",
+    "pages/inspire.js": "pages/inspire.js.map",
+    "server.js": "server.js.map"
+  }
+}
