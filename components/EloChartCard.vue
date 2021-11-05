@@ -117,6 +117,11 @@ export default {
     },
   },
   methods: {
+    sleep(msec) {
+      return new Promise(resolve => {
+        setTimeout(() => resolve(), msec)
+      })
+    },
     onClickedSearchUserInput() {
       this.select = '';
 
@@ -137,8 +142,10 @@ export default {
         });
         console.log(`chartDispId: ${chartDispId}`);
 
+        await this.sleep(3000);
+
         let url = `https://www.aoe4stats.net/?chartDispId=${chartDispId}`;
-        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${''}`, '_blank')
+        window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank')
       } catch (e) {
         console.error(e);
       } finally {
