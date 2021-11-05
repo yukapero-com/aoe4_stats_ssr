@@ -132,9 +132,9 @@ export default {
 
       try {
         let image = await this.$refs['elo-chart'].generateChartImageBase64();
-        let chartDispId = (await this.$axios.post('/api/upload_elo_chart_img', {
+        let chartDispId = await this.$post('upload_elo_chart_img', {
           imageBase64: image,
-        })).data;
+        });
         console.log(`chartDispId: ${chartDispId}`);
 
         let url = `https://www.aoe4stats.net/?chartDispId=${chartDispId}`;
