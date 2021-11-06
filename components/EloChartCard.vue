@@ -45,6 +45,7 @@
         ref="elo-chart"
         class="chart"
         :id="chartId"
+        :user="user"
         :chart-data="chartData"
         :is-fetching="isFetchingChartData"
       />
@@ -90,6 +91,7 @@ export default {
     items: [],
     search: null,
     select: null,
+    user: null,
     chartData: [],
     isFetchingChartData: false,
     isUploadingChart: false,
@@ -140,12 +142,17 @@ export default {
         let chartDispId = await this.$post('upload_elo_chart_img', {
           imageBase64: image,
         });
-        console.log(`chartDispId: ${chartDispId}`);
-
-        await this.sleep(3000);
-
         let url = `https://www.aoe4stats.net/?chartDispId=${chartDispId}`;
-        window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank')
+
+        console.log(`chartDispId: ${chartDispId}`);
+        let imageUrl = chartDispId ?
+          `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.jpg` :
+          'https://www.aoe4stats.net/aoe4_stats_logo.jpg';
+        console.log(imageUrl);
+
+        await this.sleep(1000);
+
+        window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank');
       } catch (e) {
         console.error(e);
       } finally {
@@ -175,6 +182,7 @@ export default {
       if (!this.select) return;
 
       this.isFetchingChartData = true;
+      this.user = JSON.parse(JSON.stringify(this.select));
       let res = await this.$get(`elo_log`, {
         id: this.select.id
       });

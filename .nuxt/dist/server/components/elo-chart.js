@@ -14,7 +14,7 @@ if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(5).default
 module.exports.__inject__ = function (context) {
-  add("9c5915e0", content, true, context)
+  add("5a912af8", content, true, context)
 };
 
 /***/ }),
@@ -26,16 +26,20 @@ module.exports.__inject__ = function (context) {
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=template&id=27b7aeef&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"parent-div"},[_vm._ssrNode("<img"+(_vm._ssrAttr("src",_vm.CONST.LOADING_SPINNER_BASE64))+" class=\"loading-spin\" data-v-27b7aeef> <div"+(_vm._ssrAttr("id",(_vm.id + "_chart")))+" class=\"chart\" data-v-27b7aeef></div>")])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=template&id=5e87d9cf&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"parent-div"},[_vm._ssrNode("<img"+(_vm._ssrAttr("src",_vm.CONST.LOADING_SPINNER_BASE64))+" class=\"loading-spin\" data-v-5e87d9cf> <div"+(_vm._ssrAttr("id",(_vm.id + "_chart")))+" class=\"chart\" data-v-5e87d9cf></div>")])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/EloChart.vue?vue&type=template&id=27b7aeef&scoped=true&
+// CONCATENATED MODULE: ./components/EloChart.vue?vue&type=template&id=5e87d9cf&scoped=true&
 
 // EXTERNAL MODULE: ./lib/const.js
 var lib_const = __webpack_require__(131);
 var const_default = /*#__PURE__*/__webpack_require__.n(lib_const);
+
+// EXTERNAL MODULE: external "underscore"
+var external_underscore_ = __webpack_require__(109);
+var external_underscore_default = /*#__PURE__*/__webpack_require__.n(external_underscore_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=script&lang=js&
 //
@@ -53,9 +57,11 @@ var const_default = /*#__PURE__*/__webpack_require__.n(lib_const);
 /* eslint-disable no-unreachable,no-debugger */
 let am5, am5xy, am5exporting;
 
+
 /* harmony default export */ var EloChartvue_type_script_lang_js_ = ({
   props: {
     id: Number,
+    user: Object,
     chartData: Array,
     isFetching: Boolean
   },
@@ -70,12 +76,16 @@ let am5, am5xy, am5exporting;
   computed: {
     isLoading() {
       return this.isGeneratingChart || this.isFetching;
+    },
+
+    latestChartData() {
+      return this.chartData ? external_underscore_default.a.last(this.chartData) : null;
     }
 
   },
   watch: {
     async chartData() {
-      this.drawChart2();
+      this.drawChart();
     },
 
     isLoading(v) {
@@ -94,30 +104,62 @@ let am5, am5xy, am5exporting;
     am5 = this.$am5.am5;
     am5xy = this.$am5.am5xy;
     am5exporting = this.$am5.am5exporting;
-    this.drawChart2();
+    this.drawChart();
   },
 
   methods: {
     generateChartImageBase64() {
-      return this.exporting.export('png');
+      return this.exporting.export('jpg', {
+        maxHeight: 400,
+        minHeight: 400,
+        maxWidth: 700,
+        minWidth: 700,
+        useLocale: true
+      });
     },
 
-    async drawChart2() {
+    async drawChart() {
       if (this.chart) {
         this.chart.dispose();
       }
 
       this.root = am5.Root.new(`${this.id}_chart`);
-      this.exporting = am5exporting.Exporting.new(this.root, {
-        menu: am5exporting.ExportingMenu.new(this.root, {})
-      });
+      this.exporting = am5exporting.Exporting.new(this.root, {});
       this.chart = this.root.container.children.push(am5xy.XYChart.new(this.root, {
         focusable: true,
         panX: false,
         panY: false,
         wheelX: "panX",
-        wheelY: "zoomX"
+        wheelY: "zoomX",
+        background: am5.Rectangle.new(this.root, {
+          fill: am5.Color.fromString("#ffffff")
+        }),
+        paddingTop: 70
       }));
+      this.addZoomCursor();
+      this.addDateAxis();
+      this.createELOAxis();
+      this.createRankAxis();
+      this.addLabels();
+      this.addLegends();
+      this.chart.appear(500, 500);
+    },
+
+    addZoomScrollBar() {
+      this.chart.set("scrollbarX", am5.Scrollbar.new(this.root, {
+        orientation: "horizontal"
+      }));
+    },
+
+    addZoomCursor() {
+      let cursor = this.chart.set("cursor", am5xy.XYCursor.new(this.root, {
+        xAxis: this.dateAxis,
+        behavior: "zoomX"
+      }));
+      cursor.lineY.set("visible", false);
+    },
+
+    addDateAxis() {
       this.dateAxis = this.chart.xAxes.push(am5xy.DateAxis.new(this.root, {
         tooltipDateFormat: "yyyy-MM-dd HH:mm",
         maxDeviation: 0.1,
@@ -129,27 +171,20 @@ let am5, am5xy, am5exporting;
         renderer: am5xy.AxisRendererX.new(this.root, {}),
         tooltip: am5.Tooltip.new(this.root, {})
       }));
-      this.dateAxis.get("dateFormats")["month"] = "MM月";
-      this.dateAxis.get("dateFormats")["week"] = "MM-DD";
-      this.dateAxis.get("dateFormats")["day"] = "MM-DD HH:mm";
+      this.dateAxis.get("dateFormats")["month"] = "M月";
+      this.dateAxis.get("dateFormats")["week"] = "MM-dd";
+      this.dateAxis.get("dateFormats")["day"] = "MM-dd HH:mm";
       this.dateAxis.get("dateFormats")["hour"] = "HH:mm";
-      let cursor = this.chart.set("cursor", am5xy.XYCursor.new(this.root, {
-        xAxis: this.dateAxis,
-        behavior: "zoomX"
-      }));
-      cursor.lineY.set("visible", false);
-      this.chart.set("scrollbarX", am5.Scrollbar.new(this.root, {
-        orientation: "horizontal"
-      }));
-      this.createELOAxis();
-      this.createRankAxis();
+    },
+
+    addLegends() {
       let legend = this.chart.children.push(am5.Legend.new(this.root, {
         nameField: "name",
         fillField: "color",
         strokeField: "color",
-        centerX: am5.percent(50),
-        x: am5.percent(55),
-        y: am5.percent(-5)
+        centerX: am5.percent(100),
+        x: am5.percent(100),
+        y: am5.percent(0)
       }));
       legend.data.setAll([{
         name: "1v1ELO",
@@ -158,7 +193,31 @@ let am5, am5xy, am5exporting;
         name: "Rank",
         color: am5.color("#003af3")
       }]);
-      this.chart.appear(500, 500);
+    },
+
+    addLabels() {
+      if (this.latestChartData) {
+        let d = this.latestChartData;
+        console.log(d);
+        this.chart.children.unshift(am5.Label.new(this.root, {
+          text: `GlobalRank: ${d.rank}   ELO: ${d.elo}   Matches: ${d.wins + d.losses}   WinRate: ${d.winPercent}%`,
+          fontSize: 18,
+          textAlign: "center",
+          x: am5.percent(50),
+          centerX: am5.percent(50),
+          y: am5.percent(-12)
+        }));
+      }
+
+      this.chart.children.unshift(am5.Label.new(this.root, {
+        text: this.user ? this.user.name : 'unknown player',
+        fontSize: 30,
+        fontWeight: "500",
+        textAlign: "center",
+        x: am5.percent(50),
+        centerX: am5.percent(50),
+        y: am5.percent(-25)
+      }));
     },
 
     createELOAxis() {
@@ -318,7 +377,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   injectStyles,
-  "27b7aeef",
+  "5e87d9cf",
   "412f7072"
   
 )
@@ -345,9 +404,9 @@ module.exports = __.extend(CONST, REFERENCE_CONST);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_27b7aeef_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(122);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_27b7aeef_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_27b7aeef_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_27b7aeef_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_27b7aeef_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(122);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
@@ -359,7 +418,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-27b7aeef]{height:400px;padding-bottom:2rem}.parent-div[data-v-27b7aeef]{position:relative;min-height:400px}.loading-spin[data-v-27b7aeef]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-5e87d9cf]{height:400px;padding-bottom:2rem}.parent-div[data-v-5e87d9cf]{position:relative;min-height:400px}.loading-spin[data-v-5e87d9cf]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}", ""]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 

@@ -29,7 +29,7 @@ app.post('/upload_elo_chart_img', async (req, res, next) => {
   }
 });
 
-app.get('/elo_chart_snapshot/(:dispId).png', async (req, res, next) => {
+app.get('/elo_chart_snapshot/(:dispId).jpg', async (req, res, next) => {
   let {dispId} = req.params;
 
   try {
@@ -45,7 +45,7 @@ app.get('/elo_chart_snapshot/(:dispId).png', async (req, res, next) => {
 
     const img = new Buffer.from(eloChartSnapshotModel.chartImageBase64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
     res.writeHead(200, {
-      'Content-Type': 'image/png',
+      'Content-Type': 'image/jpeg',
       'Content-Length': img.length
     });
     res.end(img);
@@ -95,7 +95,7 @@ app.get('/elo_log', async (req, res, next) => {
     rank: m.rank,
     winPercent: m.winPercent,
     wins: m.wins,
-    loses: m.loses,
+    losses: m.losses,
     createdAt: m.createdAt,
   })));
 });

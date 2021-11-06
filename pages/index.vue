@@ -68,8 +68,8 @@ export default {
   head() {
     let {chartDispId} = this.$route.query;
     let imageUrl = chartDispId ?
-      `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.png` :
-      'https://www.aoe4stats.net/aoe4_stats_logo.png';
+      `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.jpg` :
+      'https://www.aoe4stats.net/aoe4_stats_logo.jpg';
     return {
       meta: [
         {hid: 'og:title', property: 'og:title', content: 'AoEIV Stats'},

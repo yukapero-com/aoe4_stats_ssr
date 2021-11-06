@@ -13,10 +13,12 @@
 /* eslint-disable no-unreachable,no-debugger */
 let am5, am5xy, am5exporting;
 import CONST from '../lib/const.js';
+import _ from 'underscore';
 
 export default {
   props: {
     id: Number,
+    user: Object,
     chartData: Array,
     isFetching: Boolean,
   },
@@ -32,12 +34,15 @@ export default {
   computed: {
     isLoading() {
       return this.isGeneratingChart || this.isFetching;
+    },
+    latestChartData() {
+      return this.chartData ? _.last(this.chartData) : null;
     }
   },
 
   watch: {
     async chartData() {
-      this.drawChart2();
+      this.drawChart();
     },
     isLoading(v) {
       if (v) {
@@ -54,22 +59,26 @@ export default {
     am5xy = this.$am5.am5xy;
     am5exporting = this.$am5.am5exporting;
 
-    this.drawChart2();
+    this.drawChart();
   },
   methods: {
     generateChartImageBase64() {
-      return this.exporting.export('png');
+      return this.exporting.export('jpg', {
+        maxHeight: 400,
+        minHeight: 400,
+        maxWidth: 700,
+        minWidth: 700,
+        useLocale: true
+      });
     },
-    async drawChart2() {
+    async drawChart() {
       if (this.chart) {
         this.chart.dispose();
       }
 
       this.root = am5.Root.new(`${this.id}_chart`);
 
-      this.exporting = am5exporting.Exporting.new(this.root, {
-        menu: am5exporting.ExportingMenu.new(this.root, {})
-      });
+      this.exporting = am5exporting.Exporting.new(this.root, {});
 
       this.chart = this.root.container.children.push(
         am5xy.XYChart.new(this.root, {
@@ -77,10 +86,36 @@ export default {
           panX: false,
           panY: false,
           wheelX: "panX",
-          wheelY: "zoomX"
+          wheelY: "zoomX",
+          background: am5.Rectangle.new(this.root, {
+            fill: am5.Color.fromString("#ffffff"),
+          }),
+          paddingTop: 70
         })
       );
 
+      this.addZoomCursor();
+      this.addDateAxis();
+      this.createELOAxis();
+      this.createRankAxis();
+      this.addLabels();
+      this.addLegends();
+
+      this.chart.appear(500, 500);
+    },
+    addZoomScrollBar() {
+      this.chart.set("scrollbarX", am5.Scrollbar.new(this.root, {
+        orientation: "horizontal",
+      }));
+    },
+    addZoomCursor() {
+      let cursor = this.chart.set("cursor", am5xy.XYCursor.new(this.root, {
+        xAxis: this.dateAxis,
+        behavior: "zoomX"
+      }));
+      cursor.lineY.set("visible", false);
+    },
+    addDateAxis() {
       this.dateAxis = this.chart.xAxes.push(
         am5xy.DateAxis.new(this.root, {
           tooltipDateFormat: "yyyy-MM-dd HH:mm",
@@ -94,31 +129,19 @@ export default {
           tooltip: am5.Tooltip.new(this.root, {})
         })
       );
-      this.dateAxis.get("dateFormats")["month"] = "MM月";
-      this.dateAxis.get("dateFormats")["week"] = "MM-DD";
-      this.dateAxis.get("dateFormats")["day"] = "MM-DD HH:mm";
+      this.dateAxis.get("dateFormats")["month"] = "M月";
+      this.dateAxis.get("dateFormats")["week"] = "MM-dd";
+      this.dateAxis.get("dateFormats")["day"] = "MM-dd HH:mm";
       this.dateAxis.get("dateFormats")["hour"] = "HH:mm";
-
-      let cursor = this.chart.set("cursor", am5xy.XYCursor.new(this.root, {
-        xAxis: this.dateAxis,
-        behavior: "zoomX"
-      }));
-      cursor.lineY.set("visible", false);
-
-      this.chart.set("scrollbarX", am5.Scrollbar.new(this.root, {
-        orientation: "horizontal"
-      }));
-
-      this.createELOAxis();
-      this.createRankAxis();
-
+    },
+    addLegends() {
       let legend = this.chart.children.push(am5.Legend.new(this.root, {
         nameField: "name",
         fillField: "color",
         strokeField: "color",
-        centerX: am5.percent(50),
-        x: am5.percent(55),
-        y: am5.percent(-5),
+        centerX: am5.percent(100),
+        x: am5.percent(100),
+        y: am5.percent(0),
       }));
 
       legend.data.setAll([{
@@ -128,8 +151,30 @@ export default {
         name: "Rank",
         color: am5.color("#003af3")
       }]);
+    },
+    addLabels() {
+      if (this.latestChartData) {
+        let d = this.latestChartData;
+        console.log(d);
+        this.chart.children.unshift(am5.Label.new(this.root, {
+          text: `GlobalRank: ${d.rank}   ELO: ${d.elo}   Matches: ${d.wins + d.losses}   WinRate: ${d.winPercent}%`,
+          fontSize: 18,
+          textAlign: "center",
+          x: am5.percent(50),
+          centerX: am5.percent(50),
+          y: am5.percent(-12),
+        }));
+      }
 
-      this.chart.appear(500, 500);
+      this.chart.children.unshift(am5.Label.new(this.root, {
+        text: this.user ? this.user.name : 'unknown player',
+        fontSize: 30,
+        fontWeight: "500",
+        textAlign: "center",
+        x: am5.percent(50),
+        centerX: am5.percent(50),
+        y: am5.percent(-25),
+      }));
     },
     createELOAxis() {
       let yRenderer = am5xy.AxisRendererY.new(this.root, {
