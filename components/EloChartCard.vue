@@ -107,7 +107,7 @@ export default {
   },
   watch: {
     search(val) {
-      if (!val || (val || '').length < 3) {
+      if (!val || (val || '').length < 2) {
         this.select = null;
         this.items = [];
         return;
@@ -152,7 +152,11 @@ export default {
 
         await this.sleep(1000);
 
-        window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank');
+        if (this.$device.isDesktop) {
+          window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank');
+        } else {
+          window.open(`twitter://post?message=${url}`, '_blank');
+        }
       } catch (e) {
         console.error(e);
       } finally {

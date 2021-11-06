@@ -132,7 +132,7 @@ if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(5).default
 module.exports.__inject__ = function (context) {
-  add("5a912af8", content, true, context)
+  add("00f7fbbb", content, true, context)
 };
 
 /***/ }),
@@ -477,12 +477,12 @@ const baseMixins = Object(mixins["a" /* default */])(colorable["a" /* default */
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=template&id=5e87d9cf&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"parent-div"},[_vm._ssrNode("<img"+(_vm._ssrAttr("src",_vm.CONST.LOADING_SPINNER_BASE64))+" class=\"loading-spin\" data-v-5e87d9cf> <div"+(_vm._ssrAttr("id",(_vm.id + "_chart")))+" class=\"chart\" data-v-5e87d9cf></div>")])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=template&id=304f40ba&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"parent-div"},[_vm._ssrNode("<img"+(_vm._ssrAttr("src",_vm.CONST.LOADING_SPINNER_BASE64))+" class=\"loading-spin\" data-v-304f40ba> <div"+(_vm._ssrAttr("id",(_vm.id + "_chart")))+" class=\"chart\" data-v-304f40ba></div>")])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/EloChart.vue?vue&type=template&id=5e87d9cf&scoped=true&
+// CONCATENATED MODULE: ./components/EloChart.vue?vue&type=template&id=304f40ba&scoped=true&
 
 // EXTERNAL MODULE: ./lib/const.js
 var lib_const = __webpack_require__(131);
@@ -634,7 +634,7 @@ let am5, am5xy, am5exporting;
         fillField: "color",
         strokeField: "color",
         centerX: am5.percent(100),
-        x: am5.percent(100),
+        x: am5.percent(95),
         y: am5.percent(0)
       }));
       legend.data.setAll([{
@@ -828,7 +828,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   injectStyles,
-  "5e87d9cf",
+  "304f40ba",
   "412f7072"
   
 )
@@ -907,9 +907,9 @@ module.exports = __.extend(CONST, REFERENCE_CONST);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(122);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_5e87d9cf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(122);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
@@ -920,7 +920,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-5e87d9cf]{height:400px;padding-bottom:2rem}.parent-div[data-v-5e87d9cf]{position:relative;min-height:400px}.loading-spin[data-v-5e87d9cf]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-304f40ba]{height:400px;padding-bottom:2rem}.parent-div[data-v-304f40ba]{position:relative;min-height:400px}.loading-spin[data-v-304f40ba]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}", ""]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -939,7 +939,7 @@ if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(5).default
 module.exports.__inject__ = function (context) {
-  add("ed28827e", content, true, context)
+  add("5bc1e80c", content, true, context)
 };
 
 /***/ }),
@@ -1354,9 +1354,9 @@ const cache = new Map();
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_080df109_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(134);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_080df109_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_080df109_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_080df109_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_080df109_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(134);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
@@ -1367,7 +1367,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-080df109],.reload-button[data-v-080df109]{width:100%}.dense-card[data-v-080df109]{padding-left:0;padding-right:0}.padding-btn[data-v-080df109]{width:80%;margin-right:1rem!important}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-5e896185],.reload-button[data-v-5e896185]{width:100%}.dense-card[data-v-5e896185]{padding-left:0;padding-right:0}.padding-btn[data-v-5e896185]{width:80%;margin-right:1rem!important}", ""]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -1809,15 +1809,15 @@ module.exports = ___CSS_LOADER_EXPORT___;
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChartCard.vue?vue&type=template&id=080df109&scoped=true&
-var EloChartCardvue_type_template_id_080df109_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-card',{staticClass:"mb-3"},[_c('v-card-text',{class:{ 'dense-card': !_vm.$device.isDesktop }},[_c('v-row',{attrs:{"no-gutters":""}},[_c('v-col',{staticClass:"pb-3",attrs:{"cols":"9","sm":"11"}},[_c('v-autocomplete',{staticClass:"mx-4",attrs:{"id":"search-input","loading":_vm.loading,"items":_vm.items,"search-input":_vm.search,"cache-items":"","flat":"","hide-no-data":"","hide-details":"","label":"Type your AoEIV user name (need 10+ 1v1 matches history to display)","outlined":"","dense":"","return-object":"","item-text":_vm.dispName,"item-value":_vm.itemValue,"prepend-inner-icon":"mdi-account-search","append-icon":""},on:{"update:searchInput":function($event){_vm.search=$event},"update:search-input":function($event){_vm.search=$event},"change":_vm.onChangedUser,"click":_vm.onClickedSearchUserInput},model:{value:(_vm.select),callback:function ($$v) {_vm.select=$$v},expression:"select"}})],1),_vm._v(" "),_c('v-col',{attrs:{"cols":"3","sm":"1"}},[_c('v-btn',{class:{
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChartCard.vue?vue&type=template&id=5e896185&scoped=true&
+var EloChartCardvue_type_template_id_5e896185_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-card',{staticClass:"mb-3"},[_c('v-card-text',{class:{ 'dense-card': !_vm.$device.isDesktop }},[_c('v-row',{attrs:{"no-gutters":""}},[_c('v-col',{staticClass:"pb-3",attrs:{"cols":"9","sm":"11"}},[_c('v-autocomplete',{staticClass:"mx-4",attrs:{"id":"search-input","loading":_vm.loading,"items":_vm.items,"search-input":_vm.search,"cache-items":"","flat":"","hide-no-data":"","hide-details":"","label":"Type your AoEIV user name (need 10+ 1v1 matches history to display)","outlined":"","dense":"","return-object":"","item-text":_vm.dispName,"item-value":_vm.itemValue,"prepend-inner-icon":"mdi-account-search","append-icon":""},on:{"update:searchInput":function($event){_vm.search=$event},"update:search-input":function($event){_vm.search=$event},"change":_vm.onChangedUser,"click":_vm.onClickedSearchUserInput},model:{value:(_vm.select),callback:function ($$v) {_vm.select=$$v},expression:"select"}})],1),_vm._v(" "),_c('v-col',{attrs:{"cols":"3","sm":"1"}},[_c('v-btn',{class:{
             'reload-button': true,
             'padding-btn': true,
           },attrs:{"color":"primary"},on:{"click":function($event){$event.preventDefault();return _vm.onChangedUser.apply(null, arguments)}}},[_vm._v("\n          Reload\n        ")])],1)],1),_vm._v(" "),_c('EloChart',{ref:"elo-chart",staticClass:"chart",attrs:{"id":_vm.chartId,"user":_vm.user,"chart-data":_vm.chartData,"is-fetching":_vm.isFetchingChartData}}),_vm._v(" "),_c('v-row',{staticClass:"text-right"},[_c('v-col',[_c('v-btn',{staticClass:"ma-2 white--text",attrs:{"color":"#00acee","disabled":_vm.isUploadingChart,"loading":_vm.isUploadingChart},on:{"click":function($event){$event.preventDefault();return _vm.onClickedShareTweetButton.apply(null, arguments)}}},[_c('v-icon',{attrs:{"dark":""}},[_vm._v("\n            mdi-twitter\n          ")]),_vm._v("\n          Share Chart\n        ")],1)],1)],1)],1)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/EloChartCard.vue?vue&type=template&id=080df109&scoped=true&
+// CONCATENATED MODULE: ./components/EloChartCard.vue?vue&type=template&id=5e896185&scoped=true&
 
 // EXTERNAL MODULE: external "underscore"
 var external_underscore_ = __webpack_require__(109);
@@ -1938,7 +1938,7 @@ var EloChart = __webpack_require__(124);
 
   watch: {
     search(val) {
-      if (!val || (val || '').length < 3) {
+      if (!val || (val || '').length < 2) {
         this.select = null;
         this.items = [];
         return;
@@ -1981,7 +1981,12 @@ var EloChart = __webpack_require__(124);
         let imageUrl = chartDispId ? `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.jpg` : 'https://www.aoe4stats.net/aoe4_stats_logo.jpg';
         console.log(imageUrl);
         await this.sleep(1000);
-        window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank');
+
+        if (this.$device.isDesktop) {
+          window.open(`https://twitter.com/intent/tweet?url=${url}`, '_blank');
+        } else {
+          window.open(`twitter://post?message=${url}`, '_blank');
+        }
       } catch (e) {
         console.error(e);
       } finally {
@@ -7581,11 +7586,11 @@ if (style0.__inject__) style0.__inject__(context)
 
 var component = Object(componentNormalizer["a" /* default */])(
   components_EloChartCardvue_type_script_lang_js_,
-  EloChartCardvue_type_template_id_080df109_scoped_true_render,
+  EloChartCardvue_type_template_id_5e896185_scoped_true_render,
   staticRenderFns,
   false,
   injectStyles,
-  "080df109",
+  "5e896185",
   "6bbdcaa2"
   
 )

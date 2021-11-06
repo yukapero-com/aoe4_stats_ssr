@@ -140,7 +140,7 @@ export default {
         fillField: "color",
         strokeField: "color",
         centerX: am5.percent(100),
-        x: am5.percent(100),
+        x: am5.percent(95),
         y: am5.percent(0),
       }));
 

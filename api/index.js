@@ -58,7 +58,7 @@ app.get('/elo_chart_snapshot/(:dispId).jpg', async (req, res, next) => {
 app.get('/user_candidates', async (req, res, next) => {
   let {text} = req.query;
 
-  if (text.length < 3) {
+  if (text.length < 2) {
     res.send([]);
     return;
   }

@@ -30,7 +30,6 @@
 
       <v-row class="mt-16 text-right" dense>
         <v-col cols="12">
-          Developed by
           <a
             class="disable-link-style"
             href="https://twitter.com/yukapero_com"
@@ -44,6 +43,14 @@
             </v-icon>
             @yukapero_com
           </a>
+        </v-col>
+        <v-col cols="12">
+          <v-icon
+            right
+          >
+            mdi-discord
+          </v-icon>
+          Dyukusi#5800
         </v-col>
         <v-col cols="12">
           <div>Icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor
