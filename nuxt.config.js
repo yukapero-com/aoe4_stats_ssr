@@ -46,8 +46,13 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/google-gtag',
   ],
+  'google-gtag': {
+    id: 'G-3S2C3E83CQ',
+    debug: true, // Enable to track in dev mode.
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

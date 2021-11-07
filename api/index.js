@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 import cryptoRandomString from 'crypto-random-string';
 
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
 app.post('/upload_elo_chart_img', async (req, res, next) => {
   let {imageBase64} = req.body;
@@ -65,12 +66,12 @@ app.get('/user_candidates', async (req, res, next) => {
 
   let records = await sequelize.query(
     `
-      SELECT *
-      FROM (SELECT DISTINCT user_name, rl_user_id FROM leader_board_log) AS t1
-      WHERE user_name LIKE ?
+      SELECT DISTINCT rl_user_id, user_name
+      FROM player
+      WHERE MATCH (user_name) AGAINST (? IN BOOLEAN MODE);
     `,
     {
-      replacements: [`%${text}%`],
+      replacements: [text],
       type: QueryTypes.SELECT
     }
   );
@@ -80,7 +81,7 @@ app.get('/user_candidates', async (req, res, next) => {
     name: r.user_name,
   }));
 
-  res.send(data.slice(0, 50));
+  res.send(data.slice(0, 100));
 });
 
 app.get('/elo_log', async (req, res, next) => {

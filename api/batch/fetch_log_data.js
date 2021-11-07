@@ -1,5 +1,6 @@
 const appRoot = require('app-root-path');
 const LeaderBoardLog = require(`${appRoot}/api/model/leader_board_log.js`);
+const Player = require(`${appRoot}/api/model/player.js`);
 const Axios = require('axios');
 
 (async () => {
@@ -7,7 +8,12 @@ const Axios = require('axios');
   let page = 1;
   while (json = await fetchJSON(page)) {
     console.log(`page: ${page}, itemCount: ${json.items.length}`);
-    await insertLog(json.items)
+
+    await Promise.all([
+      insertLog(json.items),
+      insertPlayer(json.items)
+    ]);
+
     page++;
   }
 
@@ -17,18 +23,31 @@ const Axios = require('axios');
 async function insertLog(items) {
   let insertObjects = items.map(item => item);
 
-  for (let i = 0; i < insertObjects.length; i++) {
-    let insertObject = insertObjects[i];
+  // for (let i = 0; i < insertObjects.length; i++) {
+  //   let insertObject = insertObjects[i];
+  //
+  //   try {
+  //     await LeaderBoardLog.create(insertObject);
+  //   } catch (e) {
+  //     console.error(e);
+  //     console.log(insertObject);
+  //   }
+  // }
 
-    try {
-      await LeaderBoardLog.create(insertObject);
-    } catch (e) {
-      console.error(e);
-      console.log(insertObject);
-    }
-  }
-  // await LeaderBoardLog.bulkCreate(insertObjects);
+  await LeaderBoardLog.bulkCreate(insertObjects);
 }
+
+async function insertPlayer(items) {
+  let insertObjects = items.map(item => ({
+    rlUserId: item.rlUserId,
+    userName: item.userName,
+  }));
+
+  await Player.bulkCreate(insertObjects, {
+    ignoreDuplicates: true,
+  });
+}
+
 
 async function sleep(msec) {
   return new Promise(resolve => {

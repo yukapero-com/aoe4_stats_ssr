@@ -34,7 +34,7 @@ const VCardTitle = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__[/* createSi
 "use strict";
 /* harmony import */ var _src_components_VCard_VCard_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(127);
 /* harmony import */ var _src_components_VCard_VCard_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_src_components_VCard_VCard_sass__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _VSheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(41);
+/* harmony import */ var _VSheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(42);
 /* harmony import */ var _mixins_loadable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(123);
 /* harmony import */ var _mixins_routable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(16);
 /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3);
@@ -132,7 +132,7 @@ if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(5).default
 module.exports.__inject__ = function (context) {
-  add("00f7fbbb", content, true, context)
+  add("38850366", content, true, context)
 };
 
 /***/ }),
@@ -149,7 +149,7 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
 var VProgressLinear = __webpack_require__(129);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/components/transitions/index.js + 2 modules
-var transitions = __webpack_require__(37);
+var transitions = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/directives/intersect/index.js
 var intersect = __webpack_require__(22);
@@ -477,12 +477,12 @@ const baseMixins = Object(mixins["a" /* default */])(colorable["a" /* default */
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=template&id=304f40ba&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"parent-div"},[_vm._ssrNode("<img"+(_vm._ssrAttr("src",_vm.CONST.LOADING_SPINNER_BASE64))+" class=\"loading-spin\" data-v-304f40ba> <div"+(_vm._ssrAttr("id",(_vm.id + "_chart")))+" class=\"chart\" data-v-304f40ba></div>")])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChart.vue?vue&type=template&id=c6433534&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"parent-div"},[_vm._ssrNode("<img"+(_vm._ssrAttr("src",_vm.CONST.LOADING_SPINNER_BASE64))+" class=\"loading-spin\" data-v-c6433534> <div"+(_vm._ssrAttr("id",(_vm.id + "_chart")))+" class=\"chart\" data-v-c6433534></div>")])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/EloChart.vue?vue&type=template&id=304f40ba&scoped=true&
+// CONCATENATED MODULE: ./components/EloChart.vue?vue&type=template&id=c6433534&scoped=true&
 
 // EXTERNAL MODULE: ./lib/const.js
 var lib_const = __webpack_require__(131);
@@ -543,9 +543,11 @@ let am5, am5xy, am5exporting;
       if (v) {
         this.showLoadingSpin();
         this.hideChart();
+        this.$emit('is-loading-chart', true);
       } else {
         this.hideLoadingSpin();
         this.showChart();
+        this.$emit('is-loading-chart', false);
       }
     }
 
@@ -560,7 +562,7 @@ let am5, am5xy, am5exporting;
 
   methods: {
     generateChartImageBase64() {
-      return this.exporting.export('jpg', {
+      return this.exporting.export('png', {
         maxHeight: 400,
         minHeight: 400,
         maxWidth: 700,
@@ -575,7 +577,11 @@ let am5, am5xy, am5exporting;
       }
 
       this.root = am5.Root.new(`${this.id}_chart`);
-      this.exporting = am5exporting.Exporting.new(this.root, {});
+      this.exporting = am5exporting.Exporting.new(this.root, {
+        pngOptions: {
+          maintainPixelRatio: true
+        }
+      });
       this.chart = this.root.container.children.push(am5xy.XYChart.new(this.root, {
         focusable: true,
         panX: false,
@@ -651,7 +657,7 @@ let am5, am5xy, am5exporting;
         let d = this.latestChartData;
         console.log(d);
         this.chart.children.unshift(am5.Label.new(this.root, {
-          text: `GlobalRank: ${d.rank}   ELO: ${d.elo}   Matches: ${d.wins + d.losses}   WinRate: ${d.winPercent}%`,
+          text: `ELO: ${d.elo}   GlobalRank: ${d.rank}   Win: ${d.winPercent}%`,
           fontSize: 18,
           textAlign: "center",
           x: am5.percent(50),
@@ -828,7 +834,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   staticRenderFns,
   false,
   injectStyles,
-  "304f40ba",
+  "c6433534",
   "412f7072"
   
 )
@@ -907,9 +913,9 @@ module.exports = __.extend(CONST, REFERENCE_CONST);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(122);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_304f40ba_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_c6433534_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(122);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_c6433534_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_c6433534_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_c6433534_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChart_vue_vue_type_style_index_0_id_c6433534_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
@@ -920,7 +926,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-304f40ba]{height:400px;padding-bottom:2rem}.parent-div[data-v-304f40ba]{position:relative;min-height:400px}.loading-spin[data-v-304f40ba]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-c6433534]{height:400px;padding-bottom:2rem}.parent-div[data-v-c6433534]{position:relative;min-height:400px}.loading-spin[data-v-c6433534]{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}", ""]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -939,7 +945,7 @@ if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
 var add = __webpack_require__(5).default
 module.exports.__inject__ = function (context) {
-  add("5bc1e80c", content, true, context)
+  add("87ec7050", content, true, context)
 };
 
 /***/ }),
@@ -1354,9 +1360,9 @@ const cache = new Map();
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(134);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_5e896185_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_fc015e70_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(134);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_fc015e70_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_fc015e70_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_fc015e70_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EloChartCard_vue_vue_type_style_index_0_id_fc015e70_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
@@ -1367,7 +1373,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-5e896185],.reload-button[data-v-5e896185]{width:100%}.dense-card[data-v-5e896185]{padding-left:0;padding-right:0}.padding-btn[data-v-5e896185]{width:80%;margin-right:1rem!important}", ""]);
+___CSS_LOADER_EXPORT___.push([module.i, ".chart[data-v-fc015e70],.reload-button[data-v-fc015e70]{width:100%}.dense-card[data-v-fc015e70]{padding-left:0;padding-right:0}.padding-btn[data-v-fc015e70]{width:80%;margin-right:1rem!important}", ""]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -1809,15 +1815,15 @@ module.exports = ___CSS_LOADER_EXPORT___;
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChartCard.vue?vue&type=template&id=5e896185&scoped=true&
-var EloChartCardvue_type_template_id_5e896185_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-card',{staticClass:"mb-3"},[_c('v-card-text',{class:{ 'dense-card': !_vm.$device.isDesktop }},[_c('v-row',{attrs:{"no-gutters":""}},[_c('v-col',{staticClass:"pb-3",attrs:{"cols":"9","sm":"11"}},[_c('v-autocomplete',{staticClass:"mx-4",attrs:{"id":"search-input","loading":_vm.loading,"items":_vm.items,"search-input":_vm.search,"cache-items":"","flat":"","hide-no-data":"","hide-details":"","label":"Type your AoEIV user name (need 10+ 1v1 matches history to display)","outlined":"","dense":"","return-object":"","item-text":_vm.dispName,"item-value":_vm.itemValue,"prepend-inner-icon":"mdi-account-search","append-icon":""},on:{"update:searchInput":function($event){_vm.search=$event},"update:search-input":function($event){_vm.search=$event},"change":_vm.onChangedUser,"click":_vm.onClickedSearchUserInput},model:{value:(_vm.select),callback:function ($$v) {_vm.select=$$v},expression:"select"}})],1),_vm._v(" "),_c('v-col',{attrs:{"cols":"3","sm":"1"}},[_c('v-btn',{class:{
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChartCard.vue?vue&type=template&id=fc015e70&scoped=true&
+var EloChartCardvue_type_template_id_fc015e70_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-card',{staticClass:"mb-3"},[_c('v-card-text',{class:{ 'dense-card': !_vm.$device.isDesktop }},[_c('v-row',{attrs:{"no-gutters":""}},[_c('v-col',{staticClass:"pb-3",attrs:{"cols":"9","sm":"11"}},[_c('v-autocomplete',{staticClass:"mx-4",attrs:{"id":"search-input","loading":_vm.loading,"items":_vm.items,"search-input":_vm.search,"cache-items":"","flat":"","hide-no-data":"","hide-details":"","label":"Type your AoEIV user name (need 10+ 1v1 matches history to display)","outlined":"","dense":"","return-object":"","item-text":_vm.dispName,"item-value":_vm.itemValue,"prepend-inner-icon":"mdi-account-search","append-icon":""},on:{"update:searchInput":function($event){_vm.search=$event},"update:search-input":function($event){_vm.search=$event},"change":_vm.onChangedUser,"click":_vm.onClickedSearchUserInput},model:{value:(_vm.select),callback:function ($$v) {_vm.select=$$v},expression:"select"}})],1),_vm._v(" "),_c('v-col',{attrs:{"cols":"3","sm":"1"}},[_c('v-btn',{class:{
             'reload-button': true,
             'padding-btn': true,
-          },attrs:{"color":"primary"},on:{"click":function($event){$event.preventDefault();return _vm.onChangedUser.apply(null, arguments)}}},[_vm._v("\n          Reload\n        ")])],1)],1),_vm._v(" "),_c('EloChart',{ref:"elo-chart",staticClass:"chart",attrs:{"id":_vm.chartId,"user":_vm.user,"chart-data":_vm.chartData,"is-fetching":_vm.isFetchingChartData}}),_vm._v(" "),_c('v-row',{staticClass:"text-right"},[_c('v-col',[_c('v-btn',{staticClass:"ma-2 white--text",attrs:{"color":"#00acee","disabled":_vm.isUploadingChart,"loading":_vm.isUploadingChart},on:{"click":function($event){$event.preventDefault();return _vm.onClickedShareTweetButton.apply(null, arguments)}}},[_c('v-icon',{attrs:{"dark":""}},[_vm._v("\n            mdi-twitter\n          ")]),_vm._v("\n          Share Chart\n        ")],1)],1)],1)],1)],1)}
+          },attrs:{"color":"primary"},on:{"click":function($event){$event.preventDefault();return _vm.onChangedUser.apply(null, arguments)}}},[_vm._v("\n          Reload\n        ")])],1)],1),_vm._v(" "),_c('EloChart',{ref:"elo-chart",staticClass:"chart",attrs:{"id":_vm.chartId,"user":_vm.user,"chart-data":_vm.chartData,"is-fetching":_vm.isFetchingChartData},on:{"is-loading-chart":_vm.onIsLoadingChart}}),_vm._v(" "),_c('v-row',{staticClass:"text-right"},[_c('v-col',[_c('v-btn',{staticClass:"ma-2 white--text",attrs:{"color":"#00acee","disabled":_vm.isUploadingChart || _vm.isLoadingChart,"loading":_vm.isUploadingChart || _vm.isLoadingChart},on:{"click":function($event){$event.preventDefault();return _vm.onClickedShareTweetButton.apply(null, arguments)}}},[_c('v-icon',{attrs:{"dark":""}},[_vm._v("\n            mdi-twitter\n          ")]),_vm._v("\n          Share Chart\n        ")],1)],1)],1)],1)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/EloChartCard.vue?vue&type=template&id=5e896185&scoped=true&
+// CONCATENATED MODULE: ./components/EloChartCard.vue?vue&type=template&id=fc015e70&scoped=true&
 
 // EXTERNAL MODULE: external "underscore"
 var external_underscore_ = __webpack_require__(109);
@@ -1831,6 +1837,7 @@ var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment
 var EloChart = __webpack_require__(124);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/EloChartCard.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -1925,8 +1932,8 @@ var EloChart = __webpack_require__(124);
     chartData: [],
     isFetchingChartData: false,
     isUploadingChart: false,
-    preventSearchTimeoutId: null,
-    isPreventSearch: false
+    isLoadingChart: false,
+    delaySearchSetTimeoutId: null
   }),
 
   async mounted() {
@@ -1944,14 +1951,16 @@ var EloChart = __webpack_require__(124);
         return;
       }
 
-      ;
       if (val === this.select) return;
-      if (this.isPreventSearch) return;
       this.querySelections(val);
     }
 
   },
   methods: {
+    onIsLoadingChart(v) {
+      this.isLoadingChart = v;
+    },
+
     sleep(msec) {
       return new Promise(resolve => {
         setTimeout(() => resolve(), msec);
@@ -1973,12 +1982,13 @@ var EloChart = __webpack_require__(124);
 
       try {
         let image = await this.$refs['elo-chart'].generateChartImageBase64();
+        console.log(image);
         let chartDispId = await this.$post('upload_elo_chart_img', {
           imageBase64: image
         });
         let url = `https://www.aoe4stats.net/?chartDispId=${chartDispId}`;
         console.log(`chartDispId: ${chartDispId}`);
-        let imageUrl = chartDispId ? `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.jpg` : 'https://www.aoe4stats.net/aoe4_stats_logo.jpg';
+        let imageUrl = chartDispId ? `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.png` : 'https://www.aoe4stats.net/aoe4_stats_logo.png';
         console.log(imageUrl);
         await this.sleep(1000);
 
@@ -1998,19 +2008,19 @@ var EloChart = __webpack_require__(124);
       if (!v) return;
       this.loading = true;
 
-      if (this.preventSearchTimeoutId) {
-        clearTimeout(this.preventSearchTimeoutId);
+      if (this.delaySearchSetTimeoutId) {
+        clearTimeout(this.delaySearchSetTimeoutId);
+        this.delaySearchSetTimeoutId = null;
       }
 
-      this.isPreventSearch = true;
-      this.preventSearchTimeoutId = setTimeout(() => {
-        this.isPreventSearch = false;
-      }, 1000);
-      let res = await this.$get(`user_candidates`, {
-        text: v
-      });
-      this.items = res;
-      this.loading = false;
+      this.delaySearchSetTimeoutId = setTimeout(async () => {
+        this.delaySearchSetTimeoutId = null;
+        let res = await this.$get(`user_candidates`, {
+          text: v
+        });
+        this.items = res;
+        this.loading = false;
+      }, 500);
     },
 
     async onChangedUser() {
@@ -2114,7 +2124,7 @@ var VChip = __webpack_require__(173);
 var mixins = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/components/transitions/index.js + 2 modules
-var transitions = __webpack_require__(37);
+var transitions = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/components/VIcon/index.js
 var VIcon = __webpack_require__(19);
@@ -3330,7 +3340,7 @@ const menuable_baseMixins = Object(mixins["a" /* default */])(stackable, Object(
   }
 }));
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/mixins/roundable/index.js
-var roundable = __webpack_require__(38);
+var roundable = __webpack_require__(39);
 
 // CONCATENATED MODULE: ./node_modules/vuetify/lib/util/dom.js
 /**
@@ -3940,10 +3950,10 @@ const VMenu_baseMixins = Object(mixins["a" /* default */])(dependent, delayable,
 var VSimpleCheckbox = __webpack_require__(159);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/directives/ripple/index.js
-var directives_ripple = __webpack_require__(36);
+var directives_ripple = __webpack_require__(37);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/components/VIcon/VIcon.js
-var VIcon_VIcon = __webpack_require__(32);
+var VIcon_VIcon = __webpack_require__(33);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/util/mergeData.js
 var mergeData = __webpack_require__(14);
@@ -4422,7 +4432,7 @@ var VListGroup = __webpack_require__(167);
 var binds_attrs = __webpack_require__(24);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/mixins/registrable/index.js
-var registrable = __webpack_require__(39);
+var registrable = __webpack_require__(40);
 
 // CONCATENATED MODULE: ./node_modules/vuetify/lib/components/VList/VListGroup.js
 // Styles
@@ -7557,7 +7567,7 @@ const VAutocomplete_defaultMenuProps = { ...defaultMenuProps,
   }
 }));
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/components/VBtn/VBtn.js + 2 modules
-var VBtn = __webpack_require__(33);
+var VBtn = __webpack_require__(34);
 
 // EXTERNAL MODULE: ./node_modules/vuetify/lib/components/VCard/VCard.js
 var VCard = __webpack_require__(121);
@@ -7586,11 +7596,11 @@ if (style0.__inject__) style0.__inject__(context)
 
 var component = Object(componentNormalizer["a" /* default */])(
   components_EloChartCardvue_type_script_lang_js_,
-  EloChartCardvue_type_template_id_5e896185_scoped_true_render,
+  EloChartCardvue_type_template_id_fc015e70_scoped_true_render,
   staticRenderFns,
   false,
   injectStyles,
-  "5e896185",
+  "fc015e70",
   "6bbdcaa2"
   
 )

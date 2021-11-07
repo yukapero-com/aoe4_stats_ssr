@@ -48,6 +48,7 @@
         :user="user"
         :chart-data="chartData"
         :is-fetching="isFetchingChartData"
+        @is-loading-chart="onIsLoadingChart"
       />
       <v-row class="text-right">
         <v-col>
@@ -55,8 +56,8 @@
             color="#00acee"
             class="ma-2 white--text"
             @click.prevent="onClickedShareTweetButton"
-            :disabled="isUploadingChart"
-            :loading="isUploadingChart"
+            :disabled="isUploadingChart || isLoadingChart"
+            :loading="isUploadingChart || isLoadingChart"
           >
             <v-icon
               dark
@@ -95,9 +96,8 @@ export default {
     chartData: [],
     isFetchingChartData: false,
     isUploadingChart: false,
-
-    preventSearchTimeoutId: null,
-    isPreventSearch: false,
+    isLoadingChart: false,
+    delaySearchSetTimeoutId: null,
   }),
   async mounted() {
     let topRanker = await this.$get(`get_top_ranker_user_id`);
@@ -112,13 +112,15 @@ export default {
         this.items = [];
         return;
       }
-      ;
+
       if (val === this.select) return;
-      if (this.isPreventSearch) return;
       this.querySelections(val)
     },
   },
   methods: {
+    onIsLoadingChart (v) {
+      this.isLoadingChart = v;
+    },
     sleep(msec) {
       return new Promise(resolve => {
         setTimeout(() => resolve(), msec)
@@ -139,6 +141,8 @@ export default {
 
       try {
         let image = await this.$refs['elo-chart'].generateChartImageBase64();
+        console.log(image);
+
         let chartDispId = await this.$post('upload_elo_chart_img', {
           imageBase64: image,
         });
@@ -146,8 +150,8 @@ export default {
 
         console.log(`chartDispId: ${chartDispId}`);
         let imageUrl = chartDispId ?
-          `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.jpg` :
-          'https://www.aoe4stats.net/aoe4_stats_logo.jpg';
+          `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.png` :
+          'https://www.aoe4stats.net/aoe4_stats_logo.png';
         console.log(imageUrl);
 
         await this.sleep(1000);
@@ -167,20 +171,19 @@ export default {
       if (!v) return;
 
       this.loading = true;
-
-      if (this.preventSearchTimeoutId) {
-        clearTimeout(this.preventSearchTimeoutId);
+      if (this.delaySearchSetTimeoutId) {
+        clearTimeout(this.delaySearchSetTimeoutId);
+        this.delaySearchSetTimeoutId = null;
       }
-      this.isPreventSearch = true;
-      this.preventSearchTimeoutId = setTimeout(() => {
-        this.isPreventSearch = false;
-      }, 1000);
 
-      let res = await this.$get(`user_candidates`, {
-        text: v
-      });
-      this.items = res;
-      this.loading = false;
+      this.delaySearchSetTimeoutId = setTimeout(async () => {
+        this.delaySearchSetTimeoutId = null;
+        let res = await this.$get(`user_candidates`, {
+          text: v
+        });
+        this.items = res;
+        this.loading = false;
+      }, 500);
     },
     async onChangedUser() {
       if (!this.select) return;

@@ -14,6 +14,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 import nuxt_plugin_plugin_48740f00 from 'nuxt_plugin_plugin_48740f00' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_plugin_6494d624 from 'nuxt_plugin_plugin_6494d624' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_googlegtag_0bc3ff76 from 'nuxt_plugin_googlegtag_0bc3ff76' // Source: ./google-gtag.js (mode: 'client')
 import nuxt_plugin_axios_41f4ba16 from 'nuxt_plugin_axios_41f4ba16' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_deviceplugin_cdd848be from 'nuxt_plugin_deviceplugin_cdd848be' // Source: ./device.plugin.js (mode: 'all')
 import nuxt_plugin_amchart_4d72949c from 'nuxt_plugin_amchart_4d72949c' // Source: ../plugins/amchart.js (mode: 'client')
@@ -67,7 +68,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s - AoEIV Stats","title":"AoEIV Stats","htmlAttrs":{"lang":"ja"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"og:title","property":"og:title","content":"AoEIV Stats"},{"name":"description","content":"Match stats for AoEIV"},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
+    head: {"titleTemplate":"%s - AoEIV Stats","title":"AoEIV Stats","htmlAttrs":{"lang":"ja"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"og:title","property":"og:title","content":"AoEIV Stats"},{"name":"description","content":"Match stats for AoEIV"},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=G-3S2C3E83CQ","async":true}]},
 
     router,
     nuxt: {
@@ -187,6 +188,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_plugin_6494d624 === 'function') {
     await nuxt_plugin_plugin_6494d624(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_googlegtag_0bc3ff76 === 'function') {
+    await nuxt_plugin_googlegtag_0bc3ff76(app.context, inject)
   }
 
   if (typeof nuxt_plugin_axios_41f4ba16 === 'function') {

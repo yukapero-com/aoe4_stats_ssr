@@ -48,9 +48,11 @@ export default {
       if (v) {
         this.showLoadingSpin();
         this.hideChart();
+        this.$emit('is-loading-chart', true);
       } else {
         this.hideLoadingSpin();
         this.showChart();
+        this.$emit('is-loading-chart', false);
       }
     }
   },
@@ -63,7 +65,7 @@ export default {
   },
   methods: {
     generateChartImageBase64() {
-      return this.exporting.export('jpg', {
+      return this.exporting.export('png', {
         maxHeight: 400,
         minHeight: 400,
         maxWidth: 700,
@@ -78,7 +80,11 @@ export default {
 
       this.root = am5.Root.new(`${this.id}_chart`);
 
-      this.exporting = am5exporting.Exporting.new(this.root, {});
+      this.exporting = am5exporting.Exporting.new(this.root, {
+        pngOptions: {
+          maintainPixelRatio: true
+        }
+      });
 
       this.chart = this.root.container.children.push(
         am5xy.XYChart.new(this.root, {
@@ -157,7 +163,7 @@ export default {
         let d = this.latestChartData;
         console.log(d);
         this.chart.children.unshift(am5.Label.new(this.root, {
-          text: `GlobalRank: ${d.rank}   ELO: ${d.elo}   Matches: ${d.wins + d.losses}   WinRate: ${d.winPercent}%`,
+          text: `ELO: ${d.elo}   GlobalRank: ${d.rank}   Win: ${d.winPercent}%`,
           fontSize: 18,
           textAlign: "center",
           x: am5.percent(50),
