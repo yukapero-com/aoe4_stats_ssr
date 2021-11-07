@@ -30,6 +30,9 @@
 
       <v-row class="mt-16 text-right" dense>
         <v-col cols="12">
+          Feel free to send me your feedback and requests <3
+        </v-col>
+        <v-col cols="12">
           <a
             class="disable-link-style"
             href="https://twitter.com/yukapero_com"

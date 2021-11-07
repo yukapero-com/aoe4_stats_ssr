@@ -137,9 +137,9 @@ export default {
           tooltip: am5.Tooltip.new(this.root, {})
         })
       );
-      this.dateAxis.get("dateFormats")["month"] = "M月";
-      this.dateAxis.get("dateFormats")["week"] = "MM-dd";
-      this.dateAxis.get("dateFormats")["day"] = "MM-dd HH:mm";
+      this.dateAxis.get("dateFormats")["month"] = "MMM";
+      this.dateAxis.get("dateFormats")["week"] = "MM/dd";
+      this.dateAxis.get("dateFormats")["day"] = "MM/dd";
       this.dateAxis.get("dateFormats")["hour"] = "HH:mm";
     },
     addLegends() {
