@@ -5,46 +5,44 @@ const __ = require('underscore');
 const sequelize = require(appRoot + '/api/lib/sequelize.js');
 const {QueryTypes} = require('sequelize');
 const LeaderBoardLog = require(`${appRoot}/api/model/leader_board_log.js`);
-const EloChartSnapshot = require(`${appRoot}/api/model/elo_chart_snapshot.js`);
+const ChartImageForShare = require(`${appRoot}/api/model/chart_image_for_share.js`);
 const bodyParser = require('body-parser');
-import cryptoRandomString from 'crypto-random-string';
+const Player = require(`${appRoot}/api/model/player.js`);
 
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true, limit: '2mb' }));
+app.use(express.urlencoded({extended: true, limit: '2mb'}));
 
 app.post('/upload_elo_chart_img', async (req, res, next) => {
-  let {imageBase64} = req.body;
+  let {rlUserId, imageBase64} = req.body;
 
   try {
-    let dispId = cryptoRandomString({length: 24});
-
-    let eloChartSnapshotModel = await EloChartSnapshot.create({
-      dispId: dispId,
+    let chartImageForShareModel = await ChartImageForShare.upsert({
+      rlUserId: rlUserId,
       chartImageBase64: imageBase64,
     });
 
-    res.send(dispId);
+    res.send(rlUserId);
   } catch (e) {
     console.error(e);
     res.send(null);
   }
 });
 
-app.get('/elo_chart_snapshot/(:dispId).jpg', async (req, res, next) => {
-  let {dispId} = req.params;
+app.get('/ogp_img/:rlUserId', async (req, res, next) => {
+  let {rlUserId} = req.params;
 
   try {
-    let eloChartSnapshotModel = await EloChartSnapshot.findOne({
+    let chartImageForShareModel = await ChartImageForShare.findOne({
       where: {
-        dispId: dispId
+        rlUserId: rlUserId
       }
     });
 
-    if (!eloChartSnapshotModel) {
-      throw new Error(`elo chart snapshot not found. dispId: ${dispId}`);
+    if (!chartImageForShareModel) {
+      throw new Error(`chart image for share not found. dispId: ${rlUserId}`);
     }
 
-    const img = new Buffer.from(eloChartSnapshotModel.chartImageBase64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+    const img = new Buffer.from(chartImageForShareModel.chartImageBase64.replace(/^data:image\/\w+;base64,/, ""), 'base64');
     res.writeHead(200, {
       'Content-Type': 'image/jpeg',
       'Content-Length': img.length
@@ -55,6 +53,7 @@ app.get('/elo_chart_snapshot/(:dispId).jpg', async (req, res, next) => {
     next();
   }
 });
+
 
 app.get('/user_candidates', async (req, res, next) => {
   let {text} = req.query;
@@ -99,6 +98,24 @@ app.get('/elo_log', async (req, res, next) => {
     losses: m.losses,
     createdAt: m.createdAt,
   })));
+});
+
+app.get('/get_name_by_rl_user_id', async (req, res, next) => {
+  let {rlUserId} = req.query;
+  let playerModel = await Player.findOne({
+    where: {
+      rlUserId: rlUserId
+    }
+  });
+
+  if (playerModel) {
+    res.send({
+      id: playerModel.rlUserId,
+      name: playerModel.userName
+    });
+  } else {
+    res.send(null);
+  }
 });
 
 app.get('/get_top_ranker_user_id', async (req, res, next) => {

@@ -100,9 +100,25 @@ export default {
     delaySearchSetTimeoutId: null,
   }),
   async mounted() {
-    let topRanker = await this.$get(`get_top_ranker_user_id`);
-    this.items = [topRanker];
-    this.select = topRanker;
+    let {user_id} = this.$route.query;
+
+    if (user_id) {
+      let player = await this.$get(`get_name_by_rl_user_id`, {rlUserId: user_id});
+
+      if (player) {
+        this.items = [player];
+        this.select = player;
+      } else {
+        let topRanker = await this.$get(`get_top_ranker_user_id`);
+        this.items = [topRanker];
+        this.select = topRanker;
+      }
+    } else {
+      let topRanker = await this.$get(`get_top_ranker_user_id`);
+      this.items = [topRanker];
+      this.select = topRanker;
+    }
+
     this.onChangedUser();
   },
   watch: {
@@ -118,7 +134,7 @@ export default {
     },
   },
   methods: {
-    onIsLoadingChart (v) {
+    onIsLoadingChart(v) {
       this.isLoadingChart = v;
     },
     sleep(msec) {
@@ -135,24 +151,21 @@ export default {
       }, 300)
     },
     async onClickedShareTweetButton() {
-      console.log("share button");
-      if (this.isUploadingChart) return;
+      if (!this.select || !this.select.id || this.isUploadingChart) return;
       this.isUploadingChart = true;
 
       try {
+        let rlUserId = this.select.id;
         let image = await this.$refs['elo-chart'].generateChartImageBase64();
-        console.log(image);
 
-        let chartDispId = await this.$post('upload_elo_chart_img', {
+        await this.$post('upload_elo_chart_img', {
+          rlUserId: rlUserId,
           imageBase64: image,
         });
-        let url = `https://www.aoe4stats.net/?chartDispId=${chartDispId}`;
+        let url = `https://www.aoe4stats.net/?user_id=${rlUserId}`;
 
-        console.log(`chartDispId: ${chartDispId}`);
-        let imageUrl = chartDispId ?
-          `https://www.aoe4stats.net/api/elo_chart_snapshot/${chartDispId}.png` :
-          'https://www.aoe4stats.net/aoe4_stats_logo.png';
-        console.log(imageUrl);
+        console.log(`rlUserId: ${rlUserId}`);
+        console.log(`https://www.aoe4stats.net/api/ogp_img/${rlUserId}`);
 
         await this.sleep(1000);
 

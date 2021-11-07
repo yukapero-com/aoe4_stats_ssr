@@ -65,13 +65,7 @@ export default {
   },
   methods: {
     generateChartImageBase64() {
-      return this.exporting.export('png', {
-        maxHeight: 400,
-        minHeight: 400,
-        maxWidth: 700,
-        minWidth: 700,
-        useLocale: true
-      });
+      return this.exporting.export('png', {});
     },
     async drawChart() {
       if (this.chart) {
@@ -82,9 +76,17 @@ export default {
 
       this.exporting = am5exporting.Exporting.new(this.root, {
         pngOptions: {
-          maintainPixelRatio: true
+          useLocale: true,
+          maintainPixelRatio: true,
+          // height: 100,
+          // width: 700,
+          // maxHeight: 100,
+          // minHeight: 100,
+          // maxWidth: 700,
+          // minWidth: 700,
         }
       });
+      this.exporting.getFormatOptions
 
       this.chart = this.root.container.children.push(
         am5xy.XYChart.new(this.root, {

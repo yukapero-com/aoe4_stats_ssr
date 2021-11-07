@@ -2,18 +2,12 @@ const appRoot = require('app-root-path');
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require(appRoot + '/api/lib/sequelize.js');
 
-class EloChartSnapshot extends Model {}
+class ChartImageForShare extends Model {}
 
-EloChartSnapshot.init({
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  dispId: {
+ChartImageForShare.init({
+  rlUserId: {
     type: DataTypes.STRING(255),
-    allowNull: true,
+    primaryKey: true,
   },
   chartImageBase64: {
     type: DataTypes.TEXT('long'),
@@ -26,17 +20,12 @@ EloChartSnapshot.init({
   },
 }, {
   sequelize,
-  modelName: 'elo_chart_snapshot',
+  modelName: 'chart_image_for_share',
   freezeTableName: true,
   underscored: true,
   timestamps: true,
-  // uniqueKeys: {
-  //   uniqueIndex: {
-  //     fields: ['service_id', 'name']
-  //   }
-  // }
 });
 
-EloChartSnapshot.sync({alter: true});
+ChartImageForShare.sync({alter: true});
 
-module.exports = EloChartSnapshot;
+module.exports = ChartImageForShare;
